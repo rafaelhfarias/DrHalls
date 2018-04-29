@@ -14,6 +14,10 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import * as $ from 'jquery';
+import { HttpClient, HttpHandler } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http'; 
+import { HttpModule } from '@angular/http';
+
 
 
 const appRoutes:Routes = [
@@ -41,9 +45,10 @@ const appRoutes:Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     MatButtonModule, MatCheckboxModule,
-    BsDropdownModule.forRoot(),TooltipModule.forRoot(),ModalModule.forRoot()
+    BsDropdownModule.forRoot(),TooltipModule.forRoot(),ModalModule.forRoot(),
+    HttpClientModule
   ],
-  providers: [UserService,AuthguardGuard],
+  providers: [UserService,AuthguardGuard, HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

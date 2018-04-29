@@ -15,7 +15,9 @@ div.input label{
     transform: translateY(-50%);
     left: 10px;
     background: white;
+    color: black;
     padding: 5px 2px;
+    font-weight: bold;
 }
 
 div.input input{

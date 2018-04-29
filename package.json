@@ -1,10 +1,11 @@
 {
   "name": "vclab-prog",
+  "main": "node.js",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy.conf.js",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
@@ -24,10 +25,14 @@
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
     "@types/jquery": "^3.3.1",
+    "body-parser": "^1.18.2",
     "bootstrap": "^4.0.0-beta.3",
     "core-js": "^2.4.1",
+    "express": "^4.16.3",
     "jquery": "^3.3.1",
+    "mysql": "^2.15.0",
     "ngx-bootstrap": "^2.0.3",
+    "npm": "^6.0.0",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"
   },
