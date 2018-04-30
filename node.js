@@ -20,15 +20,25 @@ router.get('/alunos', (req, res) =>{
     execSQLQuery('SELECT * FROM aluno', res);
 })
 
+router.get('/disciplinas', (req, res) =>{
+    execSQLQuery('SELECT * FROM disciplina', res);
+})
+
+router.get('/turmas', (req, res) =>{
+    execSQLQuery('SELECT * FROM turma', res);
+})
+
 app.listen(port);
 console.log('API funcionando!');
 
 function execSQLQuery(sqlQry,res){
     const connection = mysql.createConnection({
         host:'localhost',
-        user: 'root',
+        //host: '200.98.66.123',
         password: '123456',
-        database: 'teste',
+        //  password: '8vXhrrAnmEs7JyYL',
+        user: 'root',
+        database: 'base3',
         port: 3306
     });
     

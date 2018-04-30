@@ -47,7 +47,7 @@ export class DashboardComponent implements OnInit {
   RefreshAlunos = function(){
     this.http.get('http://localhost:4200/api/alunos').subscribe(data => {
       this.alunos = data;
-      this.alunos = this.alunos.filter(aluno => aluno.ano === this.ano);
+      this.alunos = this.alunos.filter(aluno => (5 -(aluno.Ano_Formacao - (new Date()).getFullYear())) === this.ano);
       console.log(this.alunos);
 
     });
