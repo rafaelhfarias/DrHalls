@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service';
+import { UserService } from '../../services/user.service';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material'; 
 import { Observable } from 'rxjs/Observable';
-import { Aluno } from './alunos/aluno';
+import { Aluno } from '../../models/aluno';
 import { HttpClientModule } from '@angular/common/http'
 import {HttpClient} from '@angular/common/http'
 
@@ -17,41 +17,54 @@ import 'rxjs/add/operator/catch';
 
 
 export class DashboardComponent implements OnInit {
+  ano = "";
+
   constructor(private user:UserService, private http:HttpClient) { 
-    var ano = 3;
+    
   }
   
   ngOnInit() {
     var year = "Terceiro Ano";
+  //  this.GetAllStudents();
     
   }
 
   TerceiroAno = function() {
     this.year = "Terceiro Ano";
-    this.ano = 3;
-    this.RefreshAlunos();
+    this.ano = "3" ;
+    //this.FilterStudentByYear();
   }
   
   QuartoAno = function() {
     this.year = "Quarto Ano";
-    this.ano = 4
-    this.RefreshAlunos();
+    this.ano = "4";
+    //this.FilterStudentByYear();
   }
 
   QuintoAno = function() {
     this.year = "Quinto Ano";
-    this.ano = 5;
-    this.RefreshAlunos();
+    this.ano = "5";
+  //  this.FilterStudentByYear();
   }
 
-  RefreshAlunos = function(){
-    this.http.get('http://localhost:4200/api/alunos').subscribe(data => {
-      this.alunos = data;
-      this.alunos = this.alunos.filter(aluno => (5 -(aluno.Ano_Formacao - (new Date()).getFullYear())) === this.ano);
-      console.log(this.alunos);
+
+  /*
+  GetAllStudents = function(){
+    this.http.get('http://localhost:4200/api/dados').subscribe(data => {
+      this.allStudents = data;
+      console.log(this.allStudents);
 
     });
-    
   }
-  alunos: Aluno[];
+  
+
+  FilterStudentByYear = function(){
+    this.studentByYear = this.allStudents.filter(aluno => (5 -(aluno.ano_formacao - (new Date()).getFullYear())) === this.ano);
+    console.log(this.studentByYear);
+  }
+*/
+
+
+
+  allStudents: Aluno[];
 }

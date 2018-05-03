@@ -1,0 +1,23 @@
+<div id="buttons" align="center">
+    <div class="button-row">        
+            <button type="button" mat-raised-button color="primary" (click)="TerceiroAno()">Terceiro Ano</button>
+            <button type="button" mat-raised-button color="primary" (click)="QuartoAno()">Quarto Ano</button>            
+            <button type="button" mat-raised-button color="primary" (click)="QuintoAno()">Quinto ano</button>            
+    </div>
+</div>
+
+<div id="dashBody">  
+    <h2>{{year}}</h2>
+    
+    <div>
+        <studenttable [anoRequerido]="ano"></studenttable>
+    </div>
+
+</div>
+        
+<div id="logout">
+  <p>
+    You are authenticated!
+    <a routerLink="/">Go back</a>
+  </p>
+</div>

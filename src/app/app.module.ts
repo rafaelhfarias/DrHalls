@@ -1,14 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { LoginFormComponent } from './login-form/login-form.component';
-import { FooterComponent } from './footer/footer.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { NgModule, ViewChild} from '@angular/core';
+import { AppComponent} from './app.component';
+import { HeaderComponent } from './components/header/header.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RouterModule,Routes} from '@angular/router';
-import { UserService } from './user.service';
+import { UserService } from './services/user.service';
 import { AuthguardGuard } from './authguard.guard';
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule , MatTableModule, MatSortModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
@@ -17,6 +17,9 @@ import * as $ from 'jquery';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http'; 
 import { HttpModule } from '@angular/http';
+import { StudenttableComponent } from './components/studenttable/studenttable.component';
+import {StudentsService} from './services/students.service';
+
 
 
 
@@ -38,17 +41,18 @@ const appRoutes:Routes = [
     HeaderComponent,
     LoginFormComponent,
     FooterComponent,
-    DashboardComponent
+    DashboardComponent,
+    StudenttableComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     BrowserAnimationsModule,
-    MatButtonModule, MatCheckboxModule,
+    MatButtonModule, MatCheckboxModule,MatTableModule, MatSortModule,
     BsDropdownModule.forRoot(),TooltipModule.forRoot(),ModalModule.forRoot(),
     HttpClientModule
   ],
-  providers: [UserService,AuthguardGuard, HttpClient],
+  providers: [UserService,AuthguardGuard, HttpClient,StudentsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

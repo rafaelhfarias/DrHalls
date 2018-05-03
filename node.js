@@ -28,6 +28,10 @@ router.get('/turmas', (req, res) =>{
     execSQLQuery('SELECT * FROM turma', res);
 })
 
+router.get('/dados', (req, res) =>{
+    execSQLQuery('select al.nome nome_al,matricula,ano_formacao,d.nome nm_disciplina,d.codigo cod_disciplina,turm.ano ano_cursado,ve,vc,vf,er_escrita,er_oral,pontos from (aluno al join turma turm on al.id = turm.aluno) join disciplina d on d.id = turm.disciplina', res);
+})
+
 app.listen(port);
 console.log('API funcionando!');
 

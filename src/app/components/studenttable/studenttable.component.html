@@ -1,0 +1,38 @@
+<mat-table #table [dataSource]="dataSource" matSort>
+
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? masterToggle() : null"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()">
+            </mat-checkbox>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()"
+                        (change)="$event ? selection.toggle(row) : null"
+                        [checked]="selection.isSelected(row)">
+            </mat-checkbox>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="nome_al" >
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Nome </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.nome_al}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="matricula">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Matricula </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.matricula}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="ano_formacao">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Ano de Formação </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.ano_formacao}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="pontos">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Pontos </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.pontos}} </mat-cell>
+  </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: columnsToDisplay" (click)="selection.toggle(row)"></mat-row>
+</mat-table>
