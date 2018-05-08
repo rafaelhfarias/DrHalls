@@ -17,19 +17,33 @@ app.use('/', router);
 // 
 
 router.get('/alunos', (req, res) =>{
+    var ano_requerido = req.params.ano;
     execSQLQuery('SELECT * FROM aluno', res);
+});
+
+router.get('/alunos/:ano', (req, res) =>{
+    var ano_requerido = req.params.ano;
+    var ano = 5 - Number(ano_requerido) + (new Date()).getFullYear();
+    execSQLQuery('SELECT * FROM aluno WHERE ano_formacao = ' + ano.toString(), res);
 })
 
-router.get('/disciplinas', (req, res) =>{
+router.get('/disciplinas/', (req, res) =>{
     execSQLQuery('SELECT * FROM disciplina', res);
+})
+
+router.get('/disciplinas/:ano', (req, res) =>{
+    var ano_requerido = req.params.ano;
+    execSQLQuery('SELECT * FROM disciplina WHERE ano = ' + ano_requerido.toString(), res);
 })
 
 router.get('/turmas', (req, res) =>{
     execSQLQuery('SELECT * FROM turma', res);
 })
 
-router.get('/dados', (req, res) =>{
-    execSQLQuery('select al.nome nome_al,matricula,ano_formacao,d.nome nm_disciplina,d.codigo cod_disciplina,turm.ano ano_cursado,ve,vc,vf,er_escrita,er_oral,pontos from (aluno al join turma turm on al.id = turm.aluno) join disciplina d on d.id = turm.disciplina', res);
+router.get('/boletim', (req, res) =>{
+    var stdIds = req.query.stdIds;
+    var discIds = req.query.discIds;
+    execSQLQuery('SELECT a.nome Nome_Aluno, d.nome Nome_Disciplina, a.matricula Matricula, t.ve, t.vc, t.vf, t.er_escrita, t.er_oral FROM (aluno a JOIN turma t ON a.id = t.aluno) JOIN disciplina d ON d.id = t.disciplina WHERE a.id in '+stdIds+' and d.id in '+discIds, res);
 })
 
 app.listen(port);

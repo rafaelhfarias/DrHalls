@@ -1,0 +1,43 @@
+<button type="button" mat-raised-button color="primary" [routerLink]="['/dashboard']">Voltar</button>
+
+<div>
+  <mat-table #table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="Nome_Aluno">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Aluno </mat-header-cell>
+      <mat-cell *matCellDef="let boletim"> {{boletim.Nome_Aluno}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Nome_Disciplina">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Disciplina </mat-header-cell>
+      <mat-cell *matCellDef="let boletim"> {{boletim.Nome_Disciplina}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Matricula">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Matricula </mat-header-cell>
+      <mat-cell *matCellDef="let boletim"> {{boletim.Matricula}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="ve">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> VE </mat-header-cell>
+      <mat-cell *matCellDef="let boletim"> {{boletim.ve}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="vc">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> VC </mat-header-cell>
+      <mat-cell *matCellDef="let boletim"> {{boletim.vc}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="vf">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> VF </mat-header-cell>
+      <mat-cell *matCellDef="let boletim"> {{boletim.vf}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="er_escrita">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ER Escrita </mat-header-cell>
+      <mat-cell *matCellDef="let boletim"> {{boletim.er_escrita}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="er_oral">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ER Oral </mat-header-cell>
+      <mat-cell *matCellDef="let boletim"> {{boletim.er_oral}} </mat-cell>
+    </ng-container>
+
+
+    <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: columnsToDisplay"></mat-row>
+  </mat-table>
+</div>

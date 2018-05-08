@@ -1,0 +1,47 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+  }
+  
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.mat-header-cell.mat-sort-header-sorted {
+  color: black;
+}
+
+.mat-sort-header-container {
+  align-items: center;
+}
+
+::ng-deep .mat-sort-header-container {
+  display:flex;
+  justify-content:center;
+}
+
+.mat-cell, .mat-header-cell {
+  overflow: hidden;
+  word-wrap: break-word;
+  text-align: center;
+}
+
+.mat-column-ve {
+  max-width: 100px;
+}
+.mat-column-vc {
+  max-width: 100px;
+}
+.mat-column-vf {
+  max-width: 100px;
+}
+
+.mat-column-er_escrita {
+  max-width: 100px;
+}
+
+.mat-column-er_oral {
+  max-width: 100px;
+}

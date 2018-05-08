@@ -16,21 +16,21 @@
         </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="nome_al" >
+    <ng-container matColumnDef="nome" >
         <mat-header-cell *matHeaderCellDef mat-sort-header> Nome </mat-header-cell>
-        <mat-cell *matCellDef="let user"> {{user.nome_al}} </mat-cell>
+        <mat-cell *matCellDef="let aluno"> {{aluno.nome}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="matricula">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Matricula </mat-header-cell>
-        <mat-cell *matCellDef="let user"> {{user.matricula}} </mat-cell>
+        <mat-cell *matCellDef="let aluno"> {{aluno.matricula}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="ano_formacao">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Ano de Formação </mat-header-cell>
-      <mat-cell *matCellDef="let user"> {{user.ano_formacao}} </mat-cell>
+      <mat-cell *matCellDef="let aluno"> {{aluno.ano_formacao}} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="pontos">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Pontos </mat-header-cell>
-      <mat-cell *matCellDef="let user"> {{user.pontos}} </mat-cell>
+      <mat-cell *matCellDef="let aluno"> {{aluno.pontos}} </mat-cell>
   </ng-container>
   
     <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>

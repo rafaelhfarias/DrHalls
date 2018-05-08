@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material'; 
 import { Observable } from 'rxjs/Observable';
@@ -8,6 +8,10 @@ import {HttpClient} from '@angular/common/http'
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { StudenttableComponent } from '../studenttable/studenttable.component';
+import { DisctableComponent } from '../disctable/disctable.component';
+import { Router, ActivatedRoute } from '@angular/router';
+import { StudentsService } from '../../services/students.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,8 +22,11 @@ import 'rxjs/add/operator/catch';
 
 export class DashboardComponent implements OnInit {
   ano = "";
+  
+  @ViewChild(StudenttableComponent) stdComponent: StudenttableComponent;
+  @ViewChild(DisctableComponent) discComponent: DisctableComponent;
 
-  constructor(private user:UserService, private http:HttpClient) { 
+  constructor(private user:UserService, private http:HttpClient, private router: Router, private studentService: StudentsService) { 
     
   }
   
@@ -47,24 +54,18 @@ export class DashboardComponent implements OnInit {
   //  this.FilterStudentByYear();
   }
 
+  ShowNotas = function(){
+    this.alSelected = this.stdComponent.selection.selected;
+    this.discSelected = this.discComponent.selection.selected;
+    this.alSelected = this.alSelected.map(function(obj){ return obj.id});
+    this.discSelected = this.discSelected.map(function(obj){ return obj.id});
+    console.log(this.alSelected);
+    console.log(this.discSelected);
+    this.studentService.saveToBoletim(this.alSelected,this.discSelected);
 
-  /*
-  GetAllStudents = function(){
-    this.http.get('http://localhost:4200/api/dados').subscribe(data => {
-      this.allStudents = data;
-      console.log(this.allStudents);
-
-    });
+    this.router.navigate(['boletim']);
   }
-  
-
-  FilterStudentByYear = function(){
-    this.studentByYear = this.allStudents.filter(aluno => (5 -(aluno.ano_formacao - (new Date()).getFullYear())) === this.ano);
-    console.log(this.studentByYear);
-  }
-*/
 
 
 
-  allStudents: Aluno[];
 }

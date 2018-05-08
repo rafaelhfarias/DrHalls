@@ -14,7 +14,7 @@ import {MatTableDataSource, MatSort, MatTable} from '@angular/material';
 export class StudenttableComponent implements OnInit {
   @Input() anoRequerido: string;
   dataSource;
-  columnsToDisplay = ['select','nome_al','matricula','pontos','ano_formacao'];
+  columnsToDisplay = ['select','nome','matricula','pontos','ano_formacao'];
   @ViewChild(MatSort) sort: MatSort;
   selection = new SelectionModel<Element>(true, []);
 
@@ -23,15 +23,13 @@ export class StudenttableComponent implements OnInit {
   ngOnInit() {}
 
   ngOnChanges(){
-    this.studentService.getStudent().subscribe(results => {
+    this.studentService.getStudent(this.anoRequerido).subscribe(results => {
       if(!results){
          return;
       }
-      results = results.filter(aluno => (5 -(aluno.ano_formacao - (new Date()).getFullYear())) === Number(this.anoRequerido));
       this.dataSource = new MatTableDataSource(results);
       this.dataSource.sort = this.sort;
-      console.log(this.dataSource);   
-      console.log(this.anoRequerido);  
+
     });
   }
 

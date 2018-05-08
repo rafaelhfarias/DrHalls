@@ -1,0 +1,38 @@
+<mat-table #table [dataSource]="dataSource" matSort>
+
+  <!-- Checkbox Column -->
+  <ng-container matColumnDef="select">
+      <mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="$event ? masterToggle() : null"
+                      [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="selection.hasValue() && !isAllSelected()">
+          </mat-checkbox>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()"
+                      (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)">
+          </mat-checkbox>
+      </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="codigo" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Codigo </mat-header-cell>
+      <mat-cell *matCellDef="let disciplina"> {{disciplina.codigo}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="nome">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Nome </mat-header-cell>
+      <mat-cell *matCellDef="let disciplina"> {{disciplina.nome}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="ano">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Ano </mat-header-cell>
+    <mat-cell *matCellDef="let disciplina"> {{disciplina.ano}} </mat-cell>
+</ng-container>
+<ng-container matColumnDef="periodo">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Periodo </mat-header-cell>
+    <mat-cell *matCellDef="let disciplina"> {{disciplina.periodo}} </mat-cell>
+</ng-container>
+
+  <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: columnsToDisplay" (click)="selection.toggle(row)"></mat-row>
+</mat-table>

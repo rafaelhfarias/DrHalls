@@ -9,10 +9,19 @@
 <div id="dashBody">  
     <h2>{{year}}</h2>
     
+    <h3>Alunos</h3>
+
     <div>
         <studenttable [anoRequerido]="ano"></studenttable>
     </div>
 
+    <h3>Disciplinas</h3>
+    <div>
+        <disctable [anoRequerido]="ano"></disctable>
+    </div>
+
+
+    <button type="button" mat-raised-button color="primary" (click)="ShowNotas()">Mostrar Notas</button>
 </div>
         
 <div id="logout">

@@ -19,6 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { StudenttableComponent } from './components/studenttable/studenttable.component';
 import {StudentsService} from './services/students.service';
+import {DisctableComponent} from './components/disctable/disctable.component';
+import { BoletimComponent } from './components/boletim/boletim.component';
 
 
 
@@ -32,6 +34,11 @@ const appRoutes:Routes = [
     path:'dashboard',
     canActivate: [AuthguardGuard],
     component: DashboardComponent
+  },
+  {
+    path:'boletim',
+    canActivate: [AuthguardGuard],
+    component: BoletimComponent
   }
 ]
 
@@ -42,7 +49,9 @@ const appRoutes:Routes = [
     LoginFormComponent,
     FooterComponent,
     DashboardComponent,
-    StudenttableComponent
+    StudenttableComponent,
+    DisctableComponent,
+    BoletimComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

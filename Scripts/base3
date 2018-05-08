@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 5.7.20, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.22, for Linux (x86_64)
 --
 -- Host: localhost    Database: base3
 -- ------------------------------------------------------
@@ -16,6 +16,60 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `aluno`
+--
+
+DROP TABLE IF EXISTS `aluno`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `aluno` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) NOT NULL,
+  `matricula` varchar(10) NOT NULL,
+  `ano_formacao` int(4) DEFAULT NULL,
+  `pontos` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `aluno`
+--
+
+LOCK TABLES `aluno` WRITE;
+/*!40000 ALTER TABLE `aluno` DISABLE KEYS */;
+INSERT INTO `aluno` VALUES (1,'Rafael Hipólito de Farias','15054',2019,7),(2,'Francisco Flavio Rabelo Filho','15017',2019,22),(3,'João Pedro da Costa Ramalho dos Santos','15024',2019,0),(4,'Hugo Leal Brito Sales','150021',2019,3);
+/*!40000 ALTER TABLE `aluno` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `disciplina`
+--
+
+DROP TABLE IF EXISTS `disciplina`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `disciplina` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) NOT NULL,
+  `codigo` varchar(10) NOT NULL,
+  `ano` int(11) DEFAULT NULL,
+  `periodo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `disciplina`
+--
+
+LOCK TABLES `disciplina` WRITE;
+/*!40000 ALTER TABLE `disciplina` DISABLE KEYS */;
+INSERT INTO `disciplina` VALUES (1,'Laboratório de Programação 3','LabProg3',4,1);
+/*!40000 ALTER TABLE `disciplina` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `turma`
 --
 
@@ -31,7 +85,6 @@ CREATE TABLE `turma` (
   `vf` float NOT NULL,
   `er_escrita` float DEFAULT NULL,
   `er_oral` float DEFAULT NULL,
-  `pontos` int(11) NOT NULL,
   PRIMARY KEY (`aluno`,`disciplina`),
   KEY `fk_disciplina` (`disciplina`),
   CONSTRAINT `fk_aluno` FOREIGN KEY (`aluno`) REFERENCES `aluno` (`id`),
@@ -45,7 +98,7 @@ CREATE TABLE `turma` (
 
 LOCK TABLES `turma` WRITE;
 /*!40000 ALTER TABLE `turma` DISABLE KEYS */;
-INSERT INTO `turma` VALUES (1,1,2018,10,9,9,NULL,NULL,3);
+INSERT INTO `turma` VALUES (1,1,2018,10,9,9,NULL,NULL),(2,1,2018,9,9,8,NULL,NULL),(3,1,2018,8,8,9,NULL,NULL);
 /*!40000 ALTER TABLE `turma` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -58,4 +111,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-30 14:56:53
+-- Dump completed on 2018-05-08 12:11:56
