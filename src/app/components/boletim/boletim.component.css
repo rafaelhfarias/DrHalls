@@ -45,3 +45,9 @@
 .mat-column-er_oral {
   max-width: 100px;
 }
+
+.chart-container{
+  
+  height:1000px; 
+  width: 1000px;
+}

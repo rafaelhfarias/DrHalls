@@ -41,3 +41,13 @@
     <mat-row *matRowDef="let row; columns: columnsToDisplay"></mat-row>
   </mat-table>
 </div>
+<!-->FALTA VER A SITUAÇÃO DO ID
+<-->
+
+  <div *ngIf="Charts">
+    <div *ngFor="let item of items; let i = index">
+      <h3>{{DiscArray[i]}}</h3>
+
+      <canvas id="{{i}}">{{Charts[i]}}</canvas>
+    </div>
+  </div>
