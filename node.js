@@ -33,7 +33,7 @@ router.get('/disciplinas/', (req, res) =>{
 
 router.get('/disciplinas/:ano', (req, res) =>{
     var ano_requerido = req.params.ano;
-    execSQLQuery('SELECT * FROM disciplina WHERE ano = ' + ano_requerido.toString(), res);
+    execSQLQuery('SELECT * FROM disciplina WHERE ano <= ' + ano_requerido.toString(), res);
 })
 
 router.get('/turmas', (req, res) =>{
@@ -43,7 +43,7 @@ router.get('/turmas', (req, res) =>{
 router.get('/boletim', (req, res) =>{
     var stdIds = req.query.stdIds;
     var discIds = req.query.discIds;
-    execSQLQuery('SELECT a.nome Nome_Aluno, d.nome Nome_Disciplina, a.matricula Matricula, t.ve, t.vc, t.vf, t.er_escrita, t.er_oral FROM (aluno a JOIN turma t ON a.id = t.aluno) JOIN disciplina d ON d.id = t.disciplina WHERE a.id in '+stdIds+' and d.id in '+discIds, res);
+    execSQLQuery('SELECT a.nome Nome_Aluno, d.nome Nome_Disciplina, a.matricula Matricula, t.ve, t.vc, t.vf, t.er_escrita, t.er_oral FROM (aluno a LEFT JOIN turma t ON a.id = t.aluno) LEFT JOIN disciplina d ON d.id = t.disciplina WHERE a.id in '+stdIds+' and d.id in '+discIds, res);
 })
 
 app.listen(port);

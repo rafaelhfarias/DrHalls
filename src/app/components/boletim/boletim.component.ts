@@ -34,7 +34,7 @@ export class BoletimComponent implements OnInit {
     this.chartsData = new Array<any>();
     this.Charts = new Array<Chart>();
     this.studentService.getBoletim().subscribe(results => {
-      if (!results) {
+      if (!results || results.length == 0) {
         return;
       }
       console.log(results);
@@ -50,6 +50,9 @@ export class BoletimComponent implements OnInit {
   ngAfterViewInit() {
     console.log("INICIOU!!!")
     this.studentService.getBoletim().subscribe(results => {
+      if(!results){
+        return ;
+      }
       const source = from(results);
       const example = source.pipe(groupBy(boletim => boletim.Nome_Disciplina), mergeMap(group => group.pipe(toArray())));
 
@@ -69,8 +72,8 @@ export class BoletimComponent implements OnInit {
               { label: 'VE', data: notas_ve, borderColor: '#3cba9f', backgroundColor: '#3cba9f' },
               { label: 'VC', data: notas_vc, borderColor: '#ffcc00', backgroundColor: '#ffcc00' },
               { label: 'VF', data: notas_vf, borderColor: '#22ccaa', backgroundColor: '#22ccaa' },
-              { label: 'ER Escrita', data: er_escrita, borderColor: '#43a2bf', backgroundColor: '#43a2bf' },
-              { label: 'ER Oral', data: er_oral, borderColor: '#ffaa33', backgroundColor: '#ffaa33' }
+              { label: 'ER Escrita', data: er_escrita, borderColor: '#43a2bf', backgroundColor: '#43a2bf', hidden: true },
+              { label: 'ER Oral', data: er_oral, borderColor: '#ffaa33', backgroundColor: '#ffaa33', hidden: true }
             ]
           },
           options: {
