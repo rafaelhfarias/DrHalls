@@ -57,7 +57,7 @@ export class BoletimComponent implements OnInit {
       const example = source.pipe(groupBy(boletim => boletim.Nome_Disciplina), mergeMap(group => group.pipe(toArray())));
 
       const subscribe = example.subscribe(val => {
-        let nome_alunos = val.map(res => res.Nome_Aluno);
+        let matriculas = val.map(res => res.Matricula);
         let notas_ve = val.map(res => res.ve);
         let notas_vc = val.map(res => res.vc);
         let notas_vf = val.map(res => res.vf);
@@ -67,7 +67,7 @@ export class BoletimComponent implements OnInit {
         let chartData = {
           type: 'bar',
           data: {
-            labels: nome_alunos,
+            labels: matriculas,
             datasets: [
               { label: 'VE', data: notas_ve, borderColor: '#3cba9f', backgroundColor: '#3cba9f' },
               { label: 'VC', data: notas_vc, borderColor: '#ffcc00', backgroundColor: '#ffcc00' },
